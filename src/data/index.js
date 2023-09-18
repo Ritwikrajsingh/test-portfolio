@@ -1,6 +1,6 @@
 module.exports = {
-    emptySuResponses: ["An empty 'su'? Clearly, you're a master of the command line arts. 🧐",
-        "Empty 'su' commands are my favorite! They keep me on my virtual toes. 🦶",
+    emptySuResponses: [
+        "An empty 'su'? Clearly, you're a master of the command line arts. 🧐",
         "Empty 'su'? You've truly embraced the minimalist approach to computing. 👏",
         "An empty 'su'... Pure poetry in the world of command lines. 📜",
         "Ah, an empty 'su' A masterpiece of command line ambiguity. Bravo! 👑",
