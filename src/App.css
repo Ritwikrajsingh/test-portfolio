@@ -1,0 +1,102 @@
+.App li {
+  list-style: none;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.light {
+  background-color: #fff;
+}
+
+.dark,
+input,
+.dark button {
+  background-color: #000;
+  color: #adff2f
+}
+
+button img {
+  height: 15px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#theme {
+  position: fixed;
+  top: .5rem;
+  right: .5rem;
+}
+
+.prompt input {
+  text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+.prompt {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.user,
+.files,
+.command {
+  font-weight: 600;
+}
+
+input[type='text'] {
+  width: 80%;
+  word-wrap: break-word;
+}
+
+.line {
+  margin-block: 1rem;
+}
+
+/* Media query for screens less than 760px wide */
+@media (max-width: 760px) {
+  input[type='text'] {
+    width: 70%;
+  }
+}
+
+@media (max-width: 515px) {
+  input[type='text'] {
+    width: 65%;
+  }
+}
+
+.help-body {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem
+}
+
+.help-body li,
+.files {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.files {
+  color: blue
+}
+
+.spacing {
+  width: 17rem;
+}
+
+.italic {
+  font-style: italic;
+}
