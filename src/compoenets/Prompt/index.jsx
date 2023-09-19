@@ -112,6 +112,7 @@ export default function Prompt({ user, setContent, changeUser }) {
                     // Handle 'whoami' command
                     break;
                 case 'email':
+                    setContent(prev => [...prev, threads, <li class='email'><a href='mailto:ritwikrajdhangta@gmail.com' target='_blank'>{`ritwikrajdhangta {at} gmail {dot} com`}</a></li>])
                     // Handle 'emaiil' command
                     break;
                 case 'cat':
