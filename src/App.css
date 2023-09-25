@@ -48,15 +48,17 @@ button img {
   margin-bottom: .5rem;
 }
 
+a,
 .user,
 .email,
 .files,
-.command {
+.command,
+.skill-category-name {
   font-weight: 600;
 }
 
 input[type='text'] {
-  width: 80%;
+  width: 75%;
   word-wrap: break-word;
 }
 
@@ -89,15 +91,15 @@ input[type='text'] {
   gap: .7rem
 }
 
+.whoami {
+  line-height: 1.3rem;
+}
+
 .help-body li,
 .files {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-}
-
-.files {
-  color: blue
 }
 
 .spacing {
@@ -106,19 +108,4 @@ input[type='text'] {
 
 .italic {
   font-style: italic;
-}
-
-a {
-  text-decoration: none;
-  padding: 0 2px 0 0;
-  color: inherit;
-}
-
-.dark a:hover {
-  background: greenyellow;
-  color: #000;
-}
-
-.light a:hover {
-  background-color: linen
 }
