@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { osIdentifiers } from '../../data'
 
 export default function Header() {
     const [os, setOs] = useState("");
 
     useEffect(() => {
-
         const userAgent = navigator.userAgent;
-
-        const osIdentifiers = [
-            { identifier: "Win", name: "Windows" },
-            { identifier: "Mac", name: "macOS" },
-            { identifier: "Linux", name: "Linux" },
-            { identifier: "Android", name: "Android" },
-            { identifier: "iOS", name: "iOS" },
-        ]
 
         for (const osInfo of osIdentifiers) {
             if (userAgent.includes(osInfo.identifier)) {
@@ -49,13 +41,13 @@ export default function Header() {
                     <pre> </pre>
                 </li>
                 <li>
-                    <pre><i className="blue">{"{{ greetings }}"}</i> </pre>
+                    <pre><i className="greetings">{"{{ greetings }}"}</i> </pre>
                 </li>
                 <li>
                     <pre> </pre>
                 </li>
                 <li>
-                    <pre>I'm <i className="blue">Ritwik Raj Singh</i>, a software engineer{/*<i className="blue">/</i>*/}</pre>
+                    <pre>I'm <i className="host">Ritwik Raj Singh</i>, a software engineer{/*<i className="blue">/</i>*/}</pre>
                 </li>
                 <li>
                     <pre> </pre>
