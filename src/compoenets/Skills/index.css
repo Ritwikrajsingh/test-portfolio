@@ -1,0 +1,30 @@
+.skills {
+    margin-left: 1rem
+}
+
+.skills-categories {
+    margin-block: .5rem;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.skill-category-items {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.light .brown {
+    color: darkred
+}
+
+.light .green {
+    color: green
+}
+
+.light .red {
+    color: brown
+}
+
+.light .skills {
+    color: darkblue
+}
