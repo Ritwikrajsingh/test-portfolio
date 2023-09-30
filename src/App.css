@@ -51,6 +51,9 @@ button img {
 a,
 .user,
 .email,
+.host,
+.seperator,
+.dollar,
 .files,
 .command,
 .skill-category-name {
@@ -64,25 +67,6 @@ input[type='text'] {
 
 .line {
   margin-block: 1rem;
-}
-
-/* Media query for screens less than 760px wide */
-@media (max-width: 880px) {
-  input[type='text'] {
-    width: 70%;
-  }
-}
-
-@media (max-width: 590px) {
-  input[type='text'] {
-    width: 65%;
-  }
-}
-
-@media (max-width: 590px) {
-  input[type='text'] {
-    width: 55%;
-  }
 }
 
 .help-body {
@@ -108,4 +92,93 @@ input[type='text'] {
 
 .italic {
   font-style: italic;
+}
+
+a {
+  text-decoration: none;
+  padding: 0 2px 0 0;
+  color: inherit;
+}
+
+/* dark theme */
+.dark a {
+  background: #acff2f2f;
+}
+
+.dark a:hover {
+  background: greenyellow;
+  color: #000;
+}
+
+.dark .at {
+  font-weight: 600;
+}
+
+
+/* light theme */
+.light input {
+  color: inherit;
+}
+
+.light .attributes {
+  color: darkcyan;
+  font-style: italic
+}
+
+.light .usage {
+  font-weight: 600;
+  color: lightslategray;
+}
+
+.light .command {
+  color: goldenrod
+}
+
+.light a {
+  color: darkslateblue;
+  background-color: #faf0e6
+}
+
+.light a:hover {
+  background-color: goldenrod
+}
+
+.light .user {
+  color: #4A90E2
+}
+
+.light .at {
+  font-weight: 901;
+}
+
+.light .host {
+  color: #8B0000
+}
+
+.light .seperator {
+  color: olivedrab
+}
+
+.light .dollar,
+.light .greetings {
+  color: #800080
+}
+
+/* Media query for screens less than 760px wide */
+@media (max-width: 880px) {
+  input[type='text'] {
+    width: 70%;
+  }
+}
+
+@media (max-width: 590px) {
+  input[type='text'] {
+    width: 65%;
+  }
+}
+
+@media (max-width: 590px) {
+  input[type='text'] {
+    width: 55%;
+  }
 }
