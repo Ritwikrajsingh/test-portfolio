@@ -15,9 +15,12 @@ export default function Prompt(props) {
 
     // regular expressionsconst suRegex = /\bsu\b/
     const suRegex = /^su$/
-    const suValidation = /su [a-zA-Z0-9]+/
+    const emptySuRegex = /\bsu\s+\s*$/
+    const suValidation = /su\s+[a-zA-Z0-9]+/
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
+    const validLs = /^ls$/.test(prompt.trim(" "))
+
 
     useEffect(() => {
         // Focus the input field when the component mounts
@@ -55,10 +58,27 @@ export default function Prompt(props) {
 
         if (prompt.trim() === '') {
             setContent(prev => [...prev, threads])
-        } else if (suRegex.test(prompt)) {
-            const username = prompt.split(" ")[1]
-            changeUser(username)
-            setContent(prev => [...prev, threads, <li>Logged in as <i className='user'>{username}</i>.</li>])
+        } else if (suRegex.test(prompt.trim(" ").split(" ")[0])) {
+            if (suValidation.test(prompt.trim(" "))) {
+                const username = prompt.trim(" ").split(" ").filter(i => i !== "")[1]
+                changeUser(username)
+                setContent(prev => [...prev, threads, <li>Logged in as <i className='user'>{username}</i>.</li>])
+                console.log(`Hey ${username}!`);
+            } else if (emptySuRegex.test(prompt)) { // Handle space after 'su '
+                // console.log(!emptySuRegex.test(prompt.trim(" ")), prompt.trim(" "))
+                changeUser("")
+                setContent(prev => [...prev, threads, <li>{emptySuResponses[Math.floor(Math.random() * emptySuResponses.length)]}</li>])
+                console.log("Oh! hacker!!!")
+            } else { // Handle single 'su'
+                setContent(prev => [...prev, threads,
+                <ul class='list'>
+                    <li>su: authentication failure</li>
+                    <li>login with a valid username</li>
+                </ul>])
+                console.log("Authentication Failure!")
+            }
+            // changeUser(username)
+            // setContent(prev => [...prev, threads, <li>Logged in as <i className='user'>{username}</i>.</li>])
         } else if (catRegex.test(prompt)) {
             if (catValidation.test(prompt.trim(" "))) {
                 if (files.includes(prompt.trim(" ").split(" ").filter(word => word !== "")[1])) {
@@ -85,6 +105,9 @@ export default function Prompt(props) {
             else {
                 setContent(prev => [...prev, threads, <li>cat: missing file operand</li>])
             }
+        } else if (validLs) {
+            // Handle 'ls' command
+            setContent(prev => [...prev, threads, <FileList files={files} />])
         } else {
             switch (prompt) {
                 case 'help':
@@ -99,7 +122,7 @@ export default function Prompt(props) {
                             <li>
                                 <div className='spacing'>
                                     <i class="yellow command">su </i>
-                                    <i class="italic">USERNAME</i>
+                                    <i class="attributes">USERNAME</i>
                                 </div>
                                 <i class="usage">log in</i>
                             </li>
@@ -113,27 +136,11 @@ export default function Prompt(props) {
                             </li>
                             <li>
                                 <div className='spacing'><i class="yellow command">cat </i>
-                                    <i class="italic">FILENAME</i></div>
+                                    <i class="attributes">FILENAME</i></div>
                                 <i class="usage">show content of a file</i>
                             </li>
                         </ul>
                     </li>])
-                    break;
-                case 'su':
-                    // Handle 'su' command
-                    setContent(prev => [...prev, threads, <ul class='list'>
-                        <li>su: authentication failure</li>
-                        <li>login with a valid username</li>
-                    </ul>])
-                    break;
-                case 'su ':
-                    // Handle 'su' command
-                    changeUser("")
-                    setContent(prev => [...prev, threads, <li>{emptySuResponses[Math.floor(Math.random() * emptySuResponses.length)]}</li>])
-                    break;
-                case 'ls':
-                    // Handle 'ls' command
-                    setContent(prev => [...prev, threads, <FileList files={files} />])
                     break;
                 case 'whoami':
                     // Handle 'whoami' command
@@ -144,7 +151,6 @@ export default function Prompt(props) {
                         href='mailto:ritwikrajdhangta@gmail.com'
                         target='_blank'
                         rel='noreferrer'>ritwikrajdhangta<span className='black'>{' {at} '}</span>gmail<span className='black'>{' {dot} '}</span>com</a></li>])
-
                     // Handle 'emaiil' command
                     break;
                 case 'clear':
@@ -165,7 +171,7 @@ export default function Prompt(props) {
                         {threads}
                         <ul className='line'>
                             <li>
-                                <pre>command not found: {prompt.trim(" ").split(" ")[0]}</pre>
+                                <pre>command not found: {prompt.trim(" ")}</pre>
                             </li>
                         </ul>
                     </>
@@ -178,14 +184,25 @@ export default function Prompt(props) {
         setPrompt("");
     }
 
+    const scrollInputIntoView = () => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth',
+            });
+        }, 0);
+        /* added timeout just to add the `scrollInputIntoView` to the task queue
+        so that setContent can change before the function runs*/
+    };
+
     return (
-        <li className="prompt">
+        <li className="prompt" id="#input">
             <span className="user">{user}</span>
             <span className="at">@</span>
             <span className="host">{hostname}</span>
             <span className="seperator">:~</span>
             <span className="dollar">$ </span>
-            <form onSubmit={executeCommand} style={{ display: 'inline' }}>
+            <form onSubmit={(e) => { executeCommand(e); scrollInputIntoView() }} style={{ display: 'inline' }}>
                 <input
                     type='text'
                     value={prompt}
