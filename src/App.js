@@ -16,7 +16,7 @@ const App = () => {
     setUser(username);
   }
   // const [content, setContent] = useState([<Header />])
-  const [content, setContent] = useState([])
+  const [content, setContent] = useState([<Header />])
 
   useEffect(() => {
     document.body.className = theme; // Set the body's className to the current theme
