@@ -100,6 +100,17 @@ a {
   color: inherit;
 }
 
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.portfolio .item {
+  display: flex;
+  gap: 1rem;
+}
+
 /* dark theme */
 .dark a {
   background: #acff2f2f;
