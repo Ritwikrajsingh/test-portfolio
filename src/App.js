@@ -16,7 +16,7 @@ const App = () => {
     setUser(username);
   }
   // const [content, setContent] = useState([<Header />])
-  const [content, setContent] = useState([<Header />])
+  const [content, setContent] = useState([])
 
   useEffect(() => {
     document.body.className = theme; // Set the body's className to the current theme
@@ -29,8 +29,6 @@ const App = () => {
       <button id='theme' onClick={toggleTheme} style={{ backgroundColor: "transparent" }}>
         <img src={themeLogo} alt={theme === 'light' ? 'Sun' : 'Moon'} />
       </button>
-
-      {/* Content */}
       <ul>
         {content}
         <Prompt
