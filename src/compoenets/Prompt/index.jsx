@@ -87,9 +87,17 @@ export default function Prompt(props) {
                             setContent(prev => [...prev, threads, <li><Skills /></li>])
                             break;
                         case 'portfolio.md':
-                            setContent(prev => [...prev, threads, portfolioData.map(item => <ul className='test'>
-                                <li className='spacing' ><a href={item.url}>{item.title}</a></li><li className='usage'><p>{item.description}</p>{item.additionalInfo && <p>{item.additionalInfo}</p>}</li>
-                            </ul>)])
+                            setContent(prev => [...prev, threads, <p className='portfolio'>
+                                {portfolioData.map(item => <ul className='item'>
+                                    <li className='spacing' >
+                                        <a href={item.url}>{item.title}</a>
+                                    </li>
+                                    <li className='usage'>
+                                        <p>{item.description}</p>
+                                        {item.additionalInfo && <p>{item.additionalInfo}</p>}
+                                    </li>
+                                </ul>)}
+                            </p>])
                             break;
                         case 'contact.md':
                             setContent(prev => [...prev, threads, contact.map(item => <li><a href={item.url}>{item.title}</a></li>)])
@@ -191,8 +199,6 @@ export default function Prompt(props) {
                 behavior: 'smooth',
             });
         }, 0);
-        /* added timeout just to add the `scrollInputIntoView` to the task queue
-        so that setContent can change before the function runs*/
     };
 
     return (
