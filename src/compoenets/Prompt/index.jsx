@@ -20,8 +20,9 @@ export default function Prompt(props) {
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
     const validLsCommand = prompt.trim(" ") === "ls"
-    const validEmailCommand = prompt.trim(" ") === "email"
     const validHelpCommand = prompt.trim(" ") === "help"
+    const validEmailCommand = prompt.trim(" ") === "email"
+    const validWhoAmICommand = prompt.trim(" ") === "whoami"
 
 
     useEffect(() => {
@@ -155,12 +156,11 @@ export default function Prompt(props) {
                     </li>
                 </ul>
             </li>])
+        } else if (validWhoAmICommand) {
+            // Handle 'whoami' command
+            setContent(prev => [...prev, threads, <WhoAmI user={user} />])
         } else {
             switch (prompt) {
-                case 'whoami':
-                    // Handle 'whoami' command
-                    setContent(prev => [...prev, threads, <WhoAmI user={user} />])
-                    break;
                 case 'clear':
                     // Handle 'clear' command
                     setContent([])
