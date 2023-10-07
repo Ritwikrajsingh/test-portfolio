@@ -20,6 +20,7 @@ export default function Prompt(props) {
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
     const validLsCommand = prompt.trim(" ") === "ls"
+    const validClearCommand = prompt.trim(" ") === "clear"
     const validHelpCommand = prompt.trim(" ") === "help"
     const validEmailCommand = prompt.trim(" ") === "email"
     const validWhoAmICommand = prompt.trim(" ") === "whoami"
@@ -159,12 +160,11 @@ export default function Prompt(props) {
         } else if (validWhoAmICommand) {
             // Handle 'whoami' command
             setContent(prev => [...prev, threads, <WhoAmI user={user} />])
+        } else if (validClearCommand) {
+            // Handle 'clear' command
+            setContent([])
         } else {
             switch (prompt) {
-                case 'clear':
-                    // Handle 'clear' command
-                    setContent([])
-                    break;
                 case 'reboot':
                     // Handle 'reboot' command
                     window.location.reload()
