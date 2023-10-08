@@ -20,10 +20,11 @@ export default function Prompt(props) {
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
     const validLsCommand = prompt.trim(" ") === "ls"
-    const validClearCommand = prompt.trim(" ") === "clear"
     const validHelpCommand = prompt.trim(" ") === "help"
     const validEmailCommand = prompt.trim(" ") === "email"
+    const validClearCommand = prompt.trim(" ") === "clear"
     const validWhoAmICommand = prompt.trim(" ") === "whoami"
+    const validRebootCommand = prompt.trim(" ") === "reboot"
 
 
     useEffect(() => {
@@ -160,15 +161,14 @@ export default function Prompt(props) {
         } else if (validWhoAmICommand) {
             // Handle 'whoami' command
             setContent(prev => [...prev, threads, <WhoAmI user={user} />])
+        } else if (validRebootCommand) {
+            // Handle 'reboot' command
+            window.location.reload()
         } else if (validClearCommand) {
             // Handle 'clear' command
             setContent([])
         } else {
             switch (prompt) {
-                case 'reboot':
-                    // Handle 'reboot' command
-                    window.location.reload()
-                    break;
                 case 'exit':
                     // Handle 'exit' command Close the current window
                     window.close();
