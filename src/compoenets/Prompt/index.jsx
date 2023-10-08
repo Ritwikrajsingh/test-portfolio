@@ -19,7 +19,7 @@ export default function Prompt(props) {
     const suValidation = /su\s+[a-zA-Z0-9]+/
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
-    const validLs = /^ls$/.test(prompt.trim(" "))
+    const validLs = prompt.trim(" ") === "ls"
     const validEmail = prompt.trim(" ") === "email"
 
 
