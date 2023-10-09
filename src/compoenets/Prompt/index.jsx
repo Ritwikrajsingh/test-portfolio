@@ -19,8 +19,8 @@ export default function Prompt(props) {
     const suValidation = /su\s+[a-zA-Z0-9]+/
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
-    const validLs = prompt.trim(" ") === "ls"
-    const validEmail = prompt.trim(" ") === "email"
+    const validLsCommand = prompt.trim(" ") === "ls"
+    const validEmailCommand = prompt.trim(" ") === "email"
 
 
     useEffect(() => {
@@ -114,10 +114,10 @@ export default function Prompt(props) {
             else {
                 setContent(prev => [...prev, threads, <li>cat: missing file operand</li>])
             }
-        } else if (validLs) {
+        } else if (validLsCommand) {
             // Handle 'ls' command
             setContent(prev => [...prev, threads, <FileList files={files} />])
-        } else if (validEmail) {
+        } else if (validEmailCommand) {
             // Handle 'emaiil' command
             setContent(prev => [...prev, threads, <li class='email'><a
                 href='mailto:ritwikrajdhangta@gmail.com'
