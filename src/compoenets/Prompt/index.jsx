@@ -20,6 +20,7 @@ export default function Prompt(props) {
     const catRegex = /\bcat\b/
     const catValidation = /cat\s+([^\s]+)/
     const validLs = /^ls$/.test(prompt.trim(" "))
+    const validEmail = prompt.trim(" ") === "email"
 
 
     useEffect(() => {
@@ -116,6 +117,12 @@ export default function Prompt(props) {
         } else if (validLs) {
             // Handle 'ls' command
             setContent(prev => [...prev, threads, <FileList files={files} />])
+        } else if (validEmail) {
+            // Handle 'emaiil' command
+            setContent(prev => [...prev, threads, <li class='email'><a
+                href='mailto:ritwikrajdhangta@gmail.com'
+                target='_blank'
+                rel='noreferrer'>ritwikrajdhangta<span className='black'>{' {at} '}</span>gmail<span className='black'>{' {dot} '}</span>com</a></li>])
         } else {
             switch (prompt) {
                 case 'help':
@@ -153,13 +160,6 @@ export default function Prompt(props) {
                 case 'whoami':
                     // Handle 'whoami' command
                     setContent(prev => [...prev, threads, <WhoAmI user={user} />])
-                    break;
-                case 'email':
-                    setContent(prev => [...prev, threads, <li class='email'><a
-                        href='mailto:ritwikrajdhangta@gmail.com'
-                        target='_blank'
-                        rel='noreferrer'>ritwikrajdhangta<span className='black'>{' {at} '}</span>gmail<span className='black'>{' {dot} '}</span>com</a></li>])
-                    // Handle 'emaiil' command
                     break;
                 case 'clear':
                     // Handle 'clear' command
