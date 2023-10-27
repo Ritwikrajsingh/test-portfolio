@@ -1,8 +1,6 @@
 import React from 'react'
 
-export default function Threads(props) {
-
-    const { user, prompt, hostname } = props
+export default function Threads({ user, prompt, hostname }) {
     return (
         <div className="prompt">
             <span className="user">{user}</span>
