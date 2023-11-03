@@ -5,6 +5,7 @@ import WhoAmI from "../WhoAmI";
 import Skills from "../Skills";
 import { contact, portfolio } from "../../data";
 import Help from "../Help";
+import Email from "../Email";
 
 const portfolioData = await portfolio();
 
@@ -210,20 +211,7 @@ export default function Prompt(props) {
       setContent((prev) => [...prev, threads, <FileList files={files} />]);
     } else if (validEmailCommand) {
       // Handle 'emaiil' command
-      setContent((prev) => [
-        ...prev,
-        threads,
-        <li class="email">
-          <a
-            href="mailto:ritwikrajdhangta@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ritwikrajdhangta<span className="black">{" {at} "}</span>gmail
-            <span className="black">{" {dot} "}</span>com
-          </a>
-        </li>,
-      ]);
+      setContent((prev) => [...prev, threads, <Email />]);
     } else if (validHelpCommand) {
       // Handle 'help' command
       setContent((prev) => [...prev, <Help threads={threads} />]);
