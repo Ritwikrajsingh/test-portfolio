@@ -240,21 +240,17 @@ export default function Prompt(props) {
       // Handle 'exit' command
       window.close();
     } else {
-      switch (prompt) {
-        default:
-          setContent((prev) => [
-            ...prev,
-            <>
-              {threads}
-              <ul className="line">
-                <li>
-                  <pre>command not found: {prompt.trim(" ")}</pre>
-                </li>
-              </ul>
-            </>,
-          ]);
-          break;
-      }
+      setContent((prev) => [
+        ...prev,
+        <>
+          {threads}
+          <ul className="line">
+            <li>
+              <pre>command not found: {prompt.trim(" ")}</pre>
+            </li>
+          </ul>
+        </>,
+      ]);
     }
 
     // Clear the input field after handling the command
