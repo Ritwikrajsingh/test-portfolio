@@ -210,7 +210,7 @@ export default function Prompt(props) {
       // Handle 'ls' command
       setContent((prev) => [...prev, threads, <FileList files={files} />]);
     } else if (validEmailCommand) {
-      // Handle 'emaiil' command
+      // Handle 'email' command
       setContent((prev) => [...prev, threads, <Email />]);
     } else if (validHelpCommand) {
       // Handle 'help' command
