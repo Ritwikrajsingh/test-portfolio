@@ -6,6 +6,7 @@ import Skills from "../Skills";
 import { contact, portfolio } from "../../data";
 import Help from "../Help";
 import Email from "../Email";
+import InvalidCommand from "../InvalidCommand";
 
 const portfolioData = await portfolio();
 
@@ -230,14 +231,8 @@ export default function Prompt(props) {
     } else {
       setContent((prev) => [
         ...prev,
-        <>
-          {threads}
-          <ul className="line">
-            <li>
-              <pre>command not found: {prompt.trim(" ")}</pre>
-            </li>
-          </ul>
-        </>,
+        threads,
+        <InvalidCommand prompt={prompt} />,
       ]);
     }
 
