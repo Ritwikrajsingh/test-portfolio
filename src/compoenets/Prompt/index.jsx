@@ -84,7 +84,6 @@ export default function Prompt(props) {
         console.log(`Hey ${username}!`);
       } else if (emptySuRegex.test(prompt)) {
         // Handle space after 'su '
-        // console.log(!emptySuRegex.test(prompt.trim(" ")), prompt.trim(" "))
         changeUser("");
         setContent((prev) => [
           ...prev,
