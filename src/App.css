@@ -15,7 +15,7 @@
 input,
 .dark button {
   background-color: #000;
-  color: #adff2f
+  color: #adff2f;
 }
 
 button img {
@@ -28,8 +28,8 @@ button img {
 
 #theme {
   position: fixed;
-  top: .5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .prompt input {
@@ -45,7 +45,7 @@ button img {
 
 .prompt {
   margin-top: 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 a,
@@ -60,7 +60,7 @@ a,
   font-weight: 600;
 }
 
-input[type='text'] {
+input[type="text"] {
   width: 75%;
   word-wrap: break-word;
 }
@@ -72,11 +72,14 @@ input[type='text'] {
 .help-body {
   display: flex;
   flex-direction: column;
-  gap: .7rem
+  gap: 0.7rem;
 }
 
 .whoami {
   line-height: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .help-body li,
@@ -103,7 +106,7 @@ a {
 .portfolio {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .portfolio .item {
@@ -125,7 +128,6 @@ a {
   font-weight: 600;
 }
 
-
 /* light theme */
 .light input {
   color: inherit;
@@ -133,7 +135,7 @@ a {
 
 .light .attributes {
   color: darkcyan;
-  font-style: italic
+  font-style: italic;
 }
 
 .light .usage {
@@ -142,20 +144,20 @@ a {
 }
 
 .light .command {
-  color: goldenrod
+  color: goldenrod;
 }
 
 .light a {
   color: darkslateblue;
-  background-color: #faf0e6
+  background-color: #faf0e6;
 }
 
 .light a:hover {
-  background-color: goldenrod
+  background-color: goldenrod;
 }
 
 .light .user {
-  color: #4A90E2
+  color: #4a90e2;
 }
 
 .light .at {
@@ -163,33 +165,33 @@ a {
 }
 
 .light .host {
-  color: #8B0000
+  color: #8b0000;
 }
 
 .light .seperator {
-  color: olivedrab
+  color: olivedrab;
 }
 
 .light .dollar,
 .light .greetings {
-  color: #800080
+  color: #800080;
 }
 
 /* Media query for screens less than 760px wide */
 @media (max-width: 880px) {
-  input[type='text'] {
+  input[type="text"] {
     width: 70%;
   }
 }
 
 @media (max-width: 590px) {
-  input[type='text'] {
+  input[type="text"] {
     width: 65%;
   }
 }
 
 @media (max-width: 590px) {
-  input[type='text'] {
+  input[type="text"] {
     width: 55%;
   }
 }
