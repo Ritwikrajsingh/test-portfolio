@@ -7,6 +7,7 @@ import { contact, portfolio } from "../../data";
 import Help from "../Help";
 import Email from "../Email";
 import InvalidCommand from "../InvalidCommand";
+import Successful from "../Login/Successful";
 
 const portfolioData = await portfolio();
 
@@ -74,13 +75,7 @@ export default function Prompt(props) {
           .split(" ")
           .filter((i) => i !== "")[1];
         changeUser(username);
-        setContent((prev) => [
-          ...prev,
-          threads,
-          <li>
-            Logged in as <i className="user">{username}</i>.
-          </li>,
-        ]);
+        setContent((prev) => [...prev, threads, <Successful />]);
         console.log(`Hey ${username}!`);
       } else if (emptySuRegex.test(prompt)) {
         // Handle space after 'su '
