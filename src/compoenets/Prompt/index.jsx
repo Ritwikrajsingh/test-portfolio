@@ -12,8 +12,17 @@ import Successful from "../Login/Successful";
 const portfolioData = await portfolio();
 
 export default function Prompt(props) {
-  const { user, setContent, changeUser, emptySuResponses, files, hostname } =
-    props;
+  const {
+    user,
+    setContent,
+    changeUser,
+    emptySuResponses,
+    files,
+    hostname,
+    history,
+    setHistory,
+  } = props;
+
   const [prompt, setPrompt] = useState("");
   const inputRef = useRef(null);
   const threads = <Threads user={user} prompt={prompt} hostname={hostname} />;
@@ -66,6 +75,11 @@ export default function Prompt(props) {
   const executeCommand = (e) => {
     e.preventDefault();
 
+    if (prompt.trim() !== "") {
+      setHistory((prev) => [...prev, prompt.trim()]);
+      setCurrentIndex(history.length + 1);
+    }
+
     if (prompt.trim() === "") {
       setContent((prev) => [...prev, threads]);
     } else if (suRegex.test(prompt.trim(" ").split(" ")[0])) {
@@ -95,7 +109,7 @@ export default function Prompt(props) {
             }
           </li>,
         ]);
-        console.log("Oh! hacker!!!");
+        console.warn("Oh! hacker!!!");
       } else {
         // Handle single 'su'
         setContent((prev) => [
@@ -106,7 +120,7 @@ export default function Prompt(props) {
             <li>login with a valid username</li>
           </ul>,
         ]);
-        console.log("Authentication Failure!");
+        console.error("Authentication Failure!");
       }
       // changeUser(username)
       // setContent(prev => [...prev, threads, <li>Logged in as <i className='user'>{username}</i>.</li>])
@@ -237,7 +251,7 @@ export default function Prompt(props) {
     // Clear the input field after handling the command
     setPrompt("");
   };
-
+  const [currentIndex, setCurrentIndex] = useState(history.length);
   const scrollInputIntoView = () => {
     setTimeout(() => {
       window.scrollTo({
@@ -245,6 +259,30 @@ export default function Prompt(props) {
         behavior: "smooth",
       });
     }, 0);
+  };
+
+  const handleInputChange = (value) => {
+    setPrompt(value);
+
+    // Manually trigger the onChange event
+    // const event = new Event("change", { bubbles: true });
+    const event = new Event("change");
+    inputRef.current.dispatchEvent(event);
+  };
+
+  const navigateHistory = (direction) => {
+    const historyLength = history.length;
+
+    let newIndex = currentIndex + direction;
+
+    // Clamp newIndex to a valid index range
+    newIndex = Math.max(0, Math.min(newIndex, historyLength));
+
+    if (newIndex !== currentIndex) {
+      const newValue = newIndex < historyLength ? history[newIndex] : "";
+      setCurrentIndex(newIndex);
+      handleInputChange(newValue);
+    }
   };
 
   return (
@@ -265,8 +303,19 @@ export default function Prompt(props) {
           type="text"
           value={prompt}
           ref={inputRef}
-          onChange={(e) => setPrompt(e.target.value)}
-          autocapitalize="none"
+          onChange={(e) => {
+            setPrompt(e.target.value);
+          }}
+          autoCapitalize="none"
+          autoComplete="off"
+          onKeyDown={(e) => {
+            if (e.keyCode === 38 || e.key === "ArrowUp") {
+              navigateHistory(-1);
+            }
+            if (e.keyCode === 40 || e.key === "ArrowDown") {
+              navigateHistory(1);
+            }
+          }}
         />
       </form>
     </li>
