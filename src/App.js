@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Header from "./compoenets/Header";
 import Prompt from "./compoenets/Prompt";
-import { emptySuResponses, files, hostname } from "./data";
 
 const App = () => {
   const [user, setUser] = useState("guest");
@@ -40,9 +39,6 @@ const App = () => {
           user={user}
           setContent={setContent}
           changeUser={changeUser}
-          emptySuResponses={emptySuResponses}
-          files={files}
-          hostname={hostname}
           history={history}
           setHistory={setHistory}
         />
