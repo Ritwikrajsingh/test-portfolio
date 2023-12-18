@@ -75,7 +75,11 @@ export default function Prompt(props) {
           .split(" ")
           .filter((i) => i !== "")[1];
         changeUser(username);
-        setContent((prev) => [...prev, threads, <Successful />]);
+        setContent((prev) => [
+          ...prev,
+          threads,
+          <Successful username={username} />,
+        ]);
         console.log(`Hey ${username}!`);
       } else if (emptySuRegex.test(prompt)) {
         // Handle space after 'su '

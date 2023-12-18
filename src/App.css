@@ -15,7 +15,7 @@
 input,
 .dark button {
   background-color: #000;
-  color: #adff2f;
+  color: #33ff33;
 }
 
 button img {
@@ -120,7 +120,7 @@ a {
 }
 
 .dark a:hover {
-  background: greenyellow;
+  background: #33ff33;
   color: #000;
 }
 
