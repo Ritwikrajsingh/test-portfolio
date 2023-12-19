@@ -3,25 +3,121 @@ import Threads from "./Threads";
 import FileList from "../FileList";
 import WhoAmI from "../WhoAmI";
 import Skills from "../Skills";
-import { contact, portfolio } from "../../data";
 import Help from "../Help";
 import Email from "../Email";
 import InvalidCommand from "../InvalidCommand";
 import Successful from "../Login/Successful";
 
+const files = ["portfolio.md", "skills.json", "contact.md"];
+const contact = [
+  {
+    title: "ritwikrajsingh2 @ twitter",
+    url: "https://twitter.com/ritwikrajsingh2",
+  },
+  {
+    title: "ritwikrajsingh @ linkedin",
+    url: "https://linkedin.com/in/ritwikrajsingh",
+  },
+  {
+    title: "ritwik_raj_singh @ telegram",
+    url: "https://t.me/ritwik_raj_singh",
+  },
+  {
+    title: "the_demon @ discord",
+    url: "https://discordapp.com/users/742510458811973712",
+  },
+];
+const hostname = "ritwik.s";
+
+//
+let repositories;
+
+const fetchRepositories = async () => {
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/ritwik/repos?per_page=100",
+      { method: "GET" }
+    );
+
+    if (response.status !== 200) {
+      console.error("Error:", response.status);
+      return;
+    }
+
+    const result = await response.json();
+    repositories = result.length;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+(async () => {
+  try {
+    await fetchRepositories();
+  } catch (error) {
+    console.error("Error:", error);
+    return "";
+  }
+})();
+
+const portfolio = async () => {
+  try {
+    await fetchRepositories();
+
+    const portfolioData = [
+      {
+        title: "GitHub",
+        description: "My github profile",
+        additionalInfo: repositories
+          ? repositories > 1
+            ? `${repositories} repos`
+            : `${repositories} repo`
+          : "",
+        url: "https://github.com/ritwikrajsingh",
+      },
+      {
+        title: "CodeDemon",
+        description: "My previous portfolio website",
+        additionalInfo: "which which doesn't work",
+        url: "https://ritwikrajsingh.github.io",
+      },
+      {
+        title: "Tunica.tech",
+        description: "My page on their website",
+        additionalInfo: null,
+        url: "https://tunicalabsmedia.com/meet/ritwik-raj-singh",
+      },
+    ];
+    return portfolioData;
+  } catch (error) {
+    console.error("Error:", error);
+    return "";
+  }
+};
+//
+
 const portfolioData = await portfolio();
 
+const emptySuResponses = [
+  "An empty 'su'? Clearly, you're a master of the command line arts. 🧐",
+  "Empty 'su'? You've truly embraced the minimalist approach to computing. 👏",
+  "An empty 'su'... Pure poetry in the world of command lines. 📜",
+  "Ah, an empty 'su' A masterpiece of command line ambiguity. Bravo! 👑",
+  "Empty 'su'? You've stumbled into the virtual land of whimsy! 🌈",
+  "No 'su' command? It's a sign to dance like nobody's watching! 💃🕺",
+  "Empty 'su,' but brimming with virtual awesomeness! Let's make magic happen! ✨",
+  "An empty 'su'? Are you trying to achieve coding Nirvana, one command at a time? 🧘‍♂️",
+  "Empty 'su' commands are like debugging mysteries waiting to be solved. 🔍🐞",
+  "Empty 'su'? Clearly, you're optimizing for maximum suspense in your coding journey. ⏳",
+  "Empty 'su' commands are like code comments: full of potential but somewhat cryptic. 🤔📝",
+  "An empty 'su'? You've just written a null pointer exception in the coding universe. 🌌💥",
+  "When life gives you an empty 'su,' make it an opportunity for coding humor! 😄💻",
+  "An empty 'su'? A true hacker's way of keeping secrets in plain sight. 🕵️‍♂️🔒",
+  "Empty 'su' commands are like hidden Easter eggs in the world of coding. 🐣🍫",
+];
+
 export default function Prompt(props) {
-  const {
-    user,
-    setContent,
-    changeUser,
-    emptySuResponses,
-    files,
-    hostname,
-    history,
-    setHistory,
-  } = props;
+  const { user, setContent, changeUser, history, setHistory } = props;
 
   const [prompt, setPrompt] = useState("");
   const inputRef = useRef(null);
